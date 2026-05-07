@@ -2,9 +2,9 @@ import { useGLTF } from '@react-three/drei'
 import { useEffect, useState } from 'react'
 
 export function useModel(url: string) {
-  const [model, setModel] = useState(null)
+  const [model, setModel] = useState<any>(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const loadModel = async () => {
@@ -13,7 +13,7 @@ export function useModel(url: string) {
         setModel(loaded)
         setLoading(false)
       } catch (err: any) {
-        setError(err.message)
+        setError(err.message || 'Failed to load model')
         setLoading(false)
       }
     }
